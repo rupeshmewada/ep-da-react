@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import "./Head.css"
+import "./Top.css"
 
 function Head() {
   return (
-    <div class="container-fluid sticky-top bg-white shadow-sm">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
+    <div class="container-fluid  sticky-top  shadow-sm  head">
+    <div class="container ">
+        <nav class="navbar navbar-expand-lg  navbar-light py-3 py-lg-0">
             <a href="index.html" class="navbar-brand">
                 <h1 class="m-0  text-primary"><i class="fa fa-clinic-medical me-2"></i>EverPeakIt
                 </h1>
@@ -18,8 +18,11 @@ function Head() {
                 <div class="navbar-nav ms-auto py-0">
 
                   <a class="nav-item nav-link"><Link to="/">Home</Link></a>
-                    <a class="nav-item nav-link"><Link to="/nav">Nav</Link></a>
+                    <a class="nav-item nav-link"><Link to="/doctors">Doctors</Link></a>
+                    <a class="nav-item nav-link"><Link to="/registration">Registration</Link></a>
+                    <a class="nav-item nav-link"><Link to="/patientsall">PatientsAll</Link></a>
                     <a class="nav-item nav-link"><Link to="/login">Login</Link></a>
+                    <a class="nav-item nav-link"><Link to="/doctor_search">Doctor_search</Link></a>
 
                 </div>
             </div>
