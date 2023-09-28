@@ -15,16 +15,17 @@ function Register() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    let userDetails = { "name": name, "email": email, "mo_no": mo_no, "location": location, "specilization": specilization, "fees": fees, "image":image[0]};
-
-
-    axios.post("http://localhost:3000/doctors/" , userDetails).then((response) => {
-      console.log(response);
-      setOutput(response.data.result);
+    let userDetails = { "name": name, "email": email, "mo_no": mo_no, "location": location, "specilization": specilization, "fees": fees, "pasword": password, "image": image };
+console.log(userDetails)
+    axios.post("http://localhost:3000/doctors/", userDetails).then((response) => {
+      console.log(response.data);
+      console.log(response.data.image);
+      setOutput("FORM SUBMIT SUCCESSFULLY");
       setName('');
       setEmail('');
       setMobile('');
       setLocation('');
+      setPassword('');
       setFees('');
       setImage('');
     }).catch((err) => {
@@ -41,16 +42,17 @@ function Register() {
           <div className="col-lg-12">
             <br />
             <h1 className="display-5 mb-4">Doctor can Register <span className="text-primary">Here!!!</span></h1>
-            <font style={{ "color": "blue" }}>{output}</font>
+            <font style={{ "color": "white" }}>{output}</font>
 
             <div className='container-sm'>
-<p>{name}</p>
-<p>{mo_no}</p>
-<p>{email}</p>
-<p>{location}</p>
-<p>{fees}</p>
-<p>{specilization}</p>
-<p>{output}</p>
+              <p>{name}</p>
+              <p>{mo_no}</p>
+              <p>{email}</p>
+              <p>{location}</p>
+              <p>{fees}</p>
+              {/* <p>{image}</p> */}
+              <p>{specilization}</p>
+              {/* <p>{output}</p> */}
               <form onSubmit={handleSubmit} >
                 <div className="form-group">
                   <label htmlFor="name">Name:</label>
@@ -83,11 +85,11 @@ function Register() {
                 </div>
 
                 <div className="form-group">
-                  {console.log(image[0])}
                   <label htmlFor="image">Image :</label>
                   <input type="file" className="form-control" onChange={e => {
-                    console.log(e.target.files[0])
-                    setImage([...e.target.files]);
+                    console.log("imae-----",   e.target.files[0].name)
+                    setImage(e.target.files[0].name);
+                    // setImage(e.target.value);
                   }} />
                 </div>
 

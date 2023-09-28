@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
+// import img1 from "../../images/c.jpeg"
+
+
 
 function Specific_Doctor(props) {
   const params = useParams()
@@ -10,45 +13,56 @@ function Specific_Doctor(props) {
 
   // console.log(one)
   const [list, setList] = useState([]);
+  const [image, setImage] = useState(null);
   const [api, setApi] = useState("http://localhost:3000/doctors/");
   // console.log(api)
   const [img, setImg] = useState("")
 
   useEffect(() => {
     axios.get(api + params.id).then((response) => {
-      setList(response.data);
+      setList(response.data.doctor);
+      setImage(response.data.image)
       console.log(response.data)
+      console.log(response.data.doctor)
     });
 
-    axios.get(api + params.id + "/image", { responseType: 'blob' }).then(async (res) => {
-      const url = URL.createObjectURL(res.data);
-      setImg(url);
-      console.log(url)
-    })
+    // axios.get(api + params.id + "/image", { responseType: 'blob' }).then(async (res) => {
+    //   const url = URL.createObjectURL(res.data);
+    //   setImg(url);
+    //   console.log(url)
+    // })
 
 
   }, []);
+  console.log("-----------",list.image)
 
   return (
     <div>
 
-      <div className='container-fluid bg-secondary  '>
-            <h1 className="text-center">Specific Doctors</h1>
+      <div className='container-fluid   '>
+            <h1 className="text-center"> Doctors Details</h1>
         <div className="row">
             {/* DOctor info */}
-          <div className="col-6 bg-success">
-
-            <tr><td><h3>Name : - {list.name}</h3></td></tr>
-            <tr> <td><h3>Email : -{list.email}</h3></td></tr>
-            <tr> <td><h3>Specilization : -{list.specilization}</h3></td></tr>
-            <tr> <td><h3>fees : -{list.fees}</h3></td></tr>
-            <tr> <td><h3>location : -{list.location}</h3></td></tr>
-            <tr> <td><h3>Mobile No : -{list.mo_no}</h3></td></tr>
+          <div className="col-6 px-5">
+           
+            <h3><td className="text-primary">{"Dr. "+list.name}</td></h3>
+            <p><td className="text-primary">{list.specilization}</td></p>
+            <p><td>Address : <b>{list.location}</b></td></p>
+            <p><td> contact no : <b>{list.mo_no}</b></td></p>
+            <p><td> contact no : <b>{list.i}</b></td></p>
+            {/* <p><td>Image: <img src={list.image} alt="image not found" /></td></p> */}
+          {/* <img src={} alt="" /><br/><br/> */}
+            <p><td>you can contact by Email  <b>{list.email}</b></td></p>
           </div>
           {/* doctor info end */}
-          <div className="col-6 bg-primary ">
-        <img src={img} className="text-center rounded mx-auto  d-block"/>
-         
+
+          <div className="col-6  ">
+        {/* <img src={img} className="text-center rounded mx-auto  d-block"/> */}
+          {/* <img src={img1} alt="" /><br/><br/> */}
+          <p><td> {image ? <img src={image} alt="image not found" />:""}</td></p>
+
+          <button className="btn btn-info px-5"><Link to={"/doctors/appointment/"+params.id  }>Appointment</Link></button>
+       
         </div>
         </div>
 

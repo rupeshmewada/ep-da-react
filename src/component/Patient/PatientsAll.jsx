@@ -5,14 +5,30 @@ import { Link } from "react-router-dom";
 
 function PatientsAll(props) {
   const [list, setList] = useState([]);
+  const [status, setStatus] = useState();
   const [api, setApi] = useState("http://localhost:3000/patients");
 
   useEffect(() => {
+    getData()
+  }, []);
+
+  function getData(params) {
     axios.get(api).then((response) => {
-      console.log(response.data[0].name);
+      // console.log(response.data);
       setList(response.data);
     });
-  }, []);
+
+  }
+
+  function delete_pat(id) {
+    axios.delete(`http://localhost:3000/patients/${id}`)
+      .then((res) => {
+        setStatus('Delete successful')
+        
+        console.log("delete id " + id)
+        getData()
+      }).catch((err) => console.log(err))
+  }
 
   return (
     <div>
@@ -20,9 +36,12 @@ function PatientsAll(props) {
         <div>
           {/* {JSON.stringify(list)} */}
           <h2>View & Manage Patients Details</h2>
+          <p>{status}</p>
           <table className="table table-bordered  table-hover">
             <thead >
               <tr className="bg-secondary">
+                <td >S.No</td>
+                <td >Id</td>
                 <td >Name</td>
                 <td>Mo_no</td>
                 <td>Email</td>
@@ -33,19 +52,25 @@ function PatientsAll(props) {
             </thead>
 
             {
-              list.map((row,i) => (
-                  <tbody>
-                  <tr key={i}> 
-                  <td>{row.name}</td>
-                  <td>{row.email}</td>
-                  <td>{row.mo_no}</td>
-                  <td>{row.address}</td>
-                  <td>{row.gender}</td>
-                 <td><button><Link to={"/patients/"+row.id}>show</Link></button>
-                <button><Link to={"/update/"+row.id}>Edit</Link></button></td>
-                </tr>
-              </tbody>
-                ))
+              list.map((row, i) => (
+                <tbody>
+                  <tr key={i}>
+                    <td>{i + 1}</td>
+                    <td>{row.id}</td>
+                    <td>{row.name}</td>
+                    <td>{row.email}</td>
+                    <td>{row.mo_no}</td>
+                    <td>{row.address}</td>
+                    <td>{row.gender}</td>
+                    <td><button><Link to={"/patients/" + row.id}>show</Link></button>
+                      {/* <button><Link to={"/update/"+row.id}>Edit</Link></button> */}
+                      {/* <button><Link to={"/patients_delete/" + row.id}>Delete</Link></button> */}
+                      {/* </td> */}
+                      <button onClick={() => delete_pat(row.id)}>Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              ))
             }
           </table>
         </div>

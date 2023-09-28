@@ -20,19 +20,18 @@ function Doctors(props) {
 
 
   return (
-    <div>
+    <div className=" ">
       {/* {JSON.stringify(list)} */}
-      <h2>View & Manage Doctor Details</h2>
-      <table class="table table-bordered  table-hover">
-        <tr className="bg-primary">
+      <h2 className="bg-secondary mb-0">View & Manage Doctor Details</h2>
+      <table class="table bg-info">
+        <tr className="bg-secondary">
          <td >Name</td>
          <td>Email</td>
          <td>Specilization</td>
          <td>Mo_no</td>
          <td>Location</td>
          <td>Fees</td>
-         <td>Image</td>
-         <td>Action</td>
+         <td className="text-center">Action</td>
         </tr>
         {
         list.map((row) => (
@@ -43,9 +42,7 @@ function Doctors(props) {
             <td>{row.mo_no}</td>
             <td>{row.location}</td>
             <td>{row.fees}</td>
-            <td>{row.fees}</td>
-            <td><button><Link to={"/doctor/"+row.id}>show</Link></button>
-                {/* <button><Link to={"update/"+row.id}>Edit</Link></button></td> */}
+            <td className="text-center"><button className=""><Link to={"/doctor/"+row.id}>show</Link></button>
                 <button className="bg-warning"><Link to={"appointment/"+row.id}>Appointment</Link></button></td>
           </tr>
         ))}

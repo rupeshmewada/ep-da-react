@@ -17,32 +17,33 @@ import Doctors from "./component/doctor/Doctors";
 import Specific_Doctor from "./component/doctor/Specific_Doctor";
 import Doctor_search from "./component/doctor/Doctor_search";
 import Test from "./component/Test";
-import Appointment from "./component/Appointment";
+import Appointment from "./component/doctor/Appointment";
+import Patient_delete from "./component/Patient/Patient_delete";
 
 function App() {
   return (
     <div className="App">
       <Top />
       <Banner />
+      {/* <Patient_delete/> */}
       {/* <Appointment /> */}
       
       {/* <Patients /> */}
       {/* <Test /> */}
-
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/tests" element={<Test />}></Route>
-        <Route path="/registration" element={<Registration />}></Route>
         <Route path="/nav" element={<Nav />}></Route>
+        <Route path="/registration" element={<Registration />}></Route>
 
         <Route path="/doctors" element={<Doctors />}></Route>
         <Route path="/doctor/:id" element={<Specific_Doctor />}></Route>
-
         <Route path="/doctors/appointment/:id" element={<Appointment />}></Route>
 
         <Route path="/patients/:id" element={<Specific_patient />}></Route>
         <Route path="/patients_create" element={<Patients_Create />}></Route>
         <Route path="/patientsall" element={<PatientsAll />}></Route>
+        <Route path="/patients_delete/:id" element={<Patient_delete />}></Route>
         <Route path="/doctor_search" element={<Doctor_search />}></Route>
       </Routes>
 

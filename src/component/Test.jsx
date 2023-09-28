@@ -18,6 +18,8 @@ axios.post(api,coll).then((res) => {
 console.log(err.message))
 }
 
+
+
   return (
       <div>
       <p>test page</p>
@@ -29,7 +31,8 @@ console.log(err.message))
         <input type="text" onChange={(e) => setName(e.target.value)} />
         <br />
         <br />
-        num :<input type="number" onChange={(e) => setNo(e.target.value)} />
+        <label htmlFor="num">num</label>
+         :<input type="number" value={no}  onChange={(e) => setNo(e.target.value)} />
         <br />
        <button type="submit">submit</button>
       </form>
