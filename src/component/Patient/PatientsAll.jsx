@@ -1,19 +1,27 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function PatientsAll(props) {
+  const navigate = useNavigate()
   const [list, setList] = useState([]);
   const [status, setStatus] = useState();
   const [api, setApi] = useState("http://localhost:3000/patients");
-
   useEffect(() => {
     getData()
   }, []);
 
   function getData(params) {
-    axios.get(api).then((response) => {
+    const token = localStorage.getItem("admin:token");
+    if(!token) 
+    navigate("/login")
+    console.log(token);
+    axios.get(api, {
+      headers: {
+        Authorization: "Bearer "+token
+    }
+    }).then((response) => {
       // console.log(response.data);
       setList(response.data);
     });
@@ -24,7 +32,6 @@ function PatientsAll(props) {
     axios.delete(`http://localhost:3000/patients/${id}`)
       .then((res) => {
         setStatus('Delete successful')
-        
         console.log("delete id " + id)
         getData()
       }).catch((err) => console.log(err))

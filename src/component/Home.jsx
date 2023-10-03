@@ -22,18 +22,18 @@ function Home(props) {
                 console.log(response);
                 console.log(response.data);
                 setList(response.data);
-            })  
+            })
             .catch((error) => {
                 console.log("Invalid url resource invoked");
             })
     }
     return (
 
-        // return (
         <div  >
+            {/* search bar  */}
+            <div className="bg-primary " style={{ height: "100px", marginTop: "-20px" }} >
 
-{/* search bar  */}
-            <div className="input-group  " style={{ padding:"0px 30px",margin:"20px"}} >
+            <div className="input-group  " style={{ padding: "0px 30px", margin: "20px" }} >
                 <input type="search" class="form-control p-2  border border-primary" placeholder="serch city" onChange={e => setLocation(e.target.value)} aria-label="Search" aria-describedby="search-addon" />
                 <select class="form-select form-select-sm border border-primary" value={specilization} onChange={e => setSpecilization(e.target.value)} aria-label=".form-select-sm example">
                     <option value="">select any one</option>
@@ -43,43 +43,44 @@ function Home(props) {
                     <option value="urologist">urologist</option>
                 </select>
 
-                <button type="button" class="btn btn-outline-primary" onClick={search}>search</button>
+                <button type="button" class="btn btn-outline-light" onClick={search}>search</button>
             </div>
-{/* search bar end */}
+            </div>
+            {/* search bar end */}
 
-{/* doctor table start */}
-<div className="border border-secondary m-5 p-2">
+            {/* doctor table start */}
+            <div className="border border-secondary m-5 p-2">
 
-            <h2>View & Manage Doctor Details</h2>
-            <table class="table table-bordered  table-hover ">
-                <tr className="fs-4">
-                    <td >Name</td>
-                    <td>Email</td>
-                    <td>Specilization</td>
-                    <td>Mo_no</td>
-                    <td>Location</td>
-                    <td>Fees</td>
-                    <td className="text-center">Action</td>
+                <h2>View & Manage Doctor Details</h2>
+                <table class="table table-bordered  table-hover ">
+                    <tr className="fs-4">
+                        <td >Name</td>
+                        <td>Email</td>
+                        <td>Specilization</td>
+                        <td>Mo_no</td>
+                        <td>Location</td>
+                        <td>Fees</td>
+                        <td className="text-center">Action</td>
 
-                </tr>
-                {
-                    list.map((row) => (
-                        <tr key={row.id}>
-                            <td>{row.name}</td>
-                            <td>{row.email}</td>
-                            <td>{row.specilization}</td>
-                            <td>{row.mo_no}</td>
-                            <td>{row.location}</td>
-                            <td>{row.fees}</td>
-                            <td className="text-center">
-                                <button className="btn btn-info"><Link to={"/doctor/" + row.id}>show</Link></button>
-                                <button className="btn btn-info "><Link to={"doctors/appointment/" + row.id}>Appointment</Link></button></td>
-                        </tr>
-                    ))}
-            </table>
-</div>
+                    </tr>
+                    {
+                        list.map((row) => (
+                            <tr key={row.id}>
+                                <td>{row.name}</td>
+                                <td>{row.email}</td>
+                                <td>{row.specilization}</td>
+                                <td>{row.mo_no}</td>
+                                <td>{row.location}</td>
+                                <td>{row.fees}</td>
+                                <td className="text-center">
+                                    <button className="btn btn-info"><Link to={"/doctor/" + row.id}>show</Link></button>
+                                    <button className="btn btn-info "><Link to={"doctors/appointment/" + row.id}>Appointment</Link></button></td>
+                            </tr>
+                        ))}
+                </table>
+            </div>
 
-{/* doctor table end */}
+            {/* doctor table end */}
 
 
             {/* <div> */}

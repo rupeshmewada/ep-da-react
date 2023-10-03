@@ -15,8 +15,9 @@ function Register() {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    let userDetails = { "name": name, "email": email, "mo_no": mo_no, "location": location, "specilization": specilization, "fees": fees, "pasword": password, "image": image };
-console.log(userDetails)
+    let userDetails = { "name": name, "email": email, "mo_no": mo_no, "location": location, "specilization": specilization, "fees": fees, "password": password };
+    console.log(userDetails)
+
     axios.post("http://localhost:3000/doctors/", userDetails).then((response) => {
       console.log(response.data);
       console.log(response.data.image);
@@ -37,7 +38,9 @@ console.log(userDetails)
   return (
     <div>
       {/* About Start */}
-      <div className="container-fluid bg-secondary p-0">
+      {/* <div className="bg-primary " style={{ height: "100px", marginTop: "-20px" }} > */}
+
+      <div className="container-fluid bg-secondary p-0" style={{ marginTop: "-8px" }} >
         <div className="row g-0">
           <div className="col-lg-12">
             <br />
@@ -49,6 +52,7 @@ console.log(userDetails)
               <p>{mo_no}</p>
               <p>{email}</p>
               <p>{location}</p>
+              <p>{password}</p>
               <p>{fees}</p>
               {/* <p>{image}</p> */}
               <p>{specilization}</p>
@@ -81,13 +85,13 @@ console.log(userDetails)
                 </div>
                 <div className="form-group">
                   <label htmlFor="password">Create Password :</label>
-                  <input type="password" className="form-control" value={password} onChange={e => setPassword(e.target.value)} />
+                  <input type="text" className="form-control" value={password} onChange={e => setPassword(e.target.value)} />
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="image">Image :</label>
                   <input type="file" className="form-control" onChange={e => {
-                    console.log("imae-----",   e.target.files[0].name)
+                    console.log("imae-----", e.target.files[0].name)
                     setImage(e.target.files[0].name);
                     // setImage(e.target.value);
                   }} />

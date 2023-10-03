@@ -61,7 +61,7 @@ function Specific_Doctor(props) {
           {/* <img src={img1} alt="" /><br/><br/> */}
           <p><td> {image ? <img src={image} alt="image not found" />:""}</td></p>
 
-          <button className="btn btn-info px-5"><Link to={"/doctors/appointment/"+params.id  }>Appointment</Link></button>
+          <button className="btn btn-info px-5"><Link to={"/doctors/"+params.id+"/appointment"  }>Appointment</Link></button>
        
         </div>
         </div>

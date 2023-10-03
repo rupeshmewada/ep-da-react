@@ -19,7 +19,7 @@ function Patient_delete(props) {
 
             console.log("item delete successfully ")
             alert(`Item delete ${param.name} successfully`)
-        }).catch((error) => {
+        }).catch((error) => {       
             // Handle error
             alert("error in delete")
 

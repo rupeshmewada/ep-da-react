@@ -1,5 +1,8 @@
-.App
-{
-    /* margin: 0; */
-    /* border: 0; */
+.App {
+    /* margin: 10px; */
+    border: 0;
+    /* color: red; */
+}
+ a {
+    text-decoration: none;
 }
